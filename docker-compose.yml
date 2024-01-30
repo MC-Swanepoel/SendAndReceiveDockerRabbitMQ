@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  send:
+    image: ${DOCKER_REGISTRY-}send
+    build:
+      context: .
+      dockerfile: Send/Dockerfile
+
+  receive:
+    image: ${DOCKER_REGISTRY-}receive
+    build:
+      context: .
+      dockerfile: Receive/Dockerfile
+
+  rabbitmq: # login guest:guest
+    image: rabbitmq:3-management
+    hostname: "rabbitmq"
+    labels:
+      NAME: "rabbitmq"
